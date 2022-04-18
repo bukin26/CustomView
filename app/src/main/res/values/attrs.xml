@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="Square">
+    <declare-styleable name="Rectangle">
         <attr name="border_width" format="integer" />
         <attr name="border_color" format="color" />
         <attr name="corner_radius" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="MyLinearLayout">
+        <attr name="text_size" format="dimension" />
+        <attr name="text_color" format="color" />
+        <attr name="background_color" format="color" />
     </declare-styleable>
 </resources>

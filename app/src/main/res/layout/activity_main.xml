@@ -11,18 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        app:background_color="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/my_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:text_color="@color/white"
+        app:text_size="18sp" />
 
     <com.gmail.customview.Rectangle
         android:id="@+id/my_rectangle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:border_color="@color/black"
-        app:border_width="30"
+        app:border_width="200"
         app:corner_radius="100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

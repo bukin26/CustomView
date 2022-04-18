@@ -1,6 +1,5 @@
 package com.gmail.customview
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -14,7 +13,7 @@ class Rectangle @JvmOverloads constructor(
     defaultStyle: Int = 0
 ) : View(context, attrs, defaultStyle) {
 
-    private val rectangle = Paint().apply {
+    private val myShape = Paint().apply {
         style = Paint.Style.STROKE
     }
     private var cornerRadius = 100F
@@ -22,30 +21,30 @@ class Rectangle @JvmOverloads constructor(
     init {
         context.theme.obtainStyledAttributes(
             attrs,
-            R.styleable.Square,
+            R.styleable.Rectangle,
             0, 0
         ).apply {
             try {
-                rectangle.strokeWidth = getFloat(R.styleable.Square_border_width, 30F)
-                rectangle.color = getColor(R.styleable.Square_border_color, Color.GREEN)
-                cornerRadius = getFloat(R.styleable.Square_corner_radius, cornerRadius)
+                myShape.strokeWidth = getFloat(R.styleable.Rectangle_border_width, 30F)
+                myShape.color = getColor(R.styleable.Rectangle_border_color, Color.GREEN)
+                cornerRadius = getFloat(R.styleable.Rectangle_corner_radius, cornerRadius)
             } finally {
                 recycle()
             }
         }
     }
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        val offset = myShape.strokeWidth / 2
         canvas.drawRoundRect(
-            30F,
-            30F,
-            width.toFloat() - 30F,
-            height.toFloat() - 30F,
+            offset,
+            offset,
+            width.toFloat() - offset,
+            height.toFloat() - offset,
             cornerRadius,
             cornerRadius,
-            rectangle
+            myShape
         )
     }
 }

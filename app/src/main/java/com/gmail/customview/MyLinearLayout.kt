@@ -1,6 +1,5 @@
 package com.gmail.customview
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
@@ -15,17 +14,46 @@ class MyLinearLayout @JvmOverloads constructor(
     defaultStyle: Int = 0
 ) : LinearLayout(context, attrs, defaultStyle) {
 
+    private var myTextColor = Color.WHITE
+    private var myBackgroundColor = Color.BLACK
+    private var myTextSize = context.resources.getDimension(R.dimen.my_text_view_size)
+
+    init {
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.MyLinearLayout,
+            0, 0
+        ).apply {
+            try {
+                myTextColor = getColor(
+                    R.styleable.MyLinearLayout_text_color,
+                    myTextColor
+                )
+                myBackgroundColor = getColor(
+                    R.styleable.MyLinearLayout_background_color,
+                    myBackgroundColor
+                )
+                myTextSize = getDimension(
+                    R.styleable.MyLinearLayout_text_size,
+                    myTextSize
+                )
+            } finally {
+                recycle()
+            }
+        }
+    }
+
     fun addItem(text: String) {
-        val textView = TextView(context).apply {
-            setBackgroundColor(Color.BLACK)
-            setTextColor(Color.WHITE)
+        val myTextView = TextView(context).apply {
+            setPadding(context.resources.getDimensionPixelSize(R.dimen.my_text_view_padding))
+            setTextColor(myTextColor)
+            setBackgroundColor(myBackgroundColor)
             setTextSize(
                 TypedValue.COMPLEX_UNIT_PX,
-                context.resources.getDimension(R.dimen.my_text_view_size)
+                myTextSize
             )
-            setPadding(context.resources.getDimensionPixelSize(R.dimen.my_text_view_padding))
             setText(text)
         }
-        addView(textView)
+        addView(myTextView)
     }
 }
